@@ -1,2 +1,2 @@
 all:
-	gcc -o out.exe optimisations.c && ./out.exe
+	gcc -o out.exe optimisations.c -O0 -Xlinker -Map=output.map && ./out.exe

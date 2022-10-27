@@ -98,9 +98,10 @@ static const uint8_t gPrimeMap[101] =
 };
 uint8_t isPrime_method3(uint8_t num)
 {
+    if (num > 100) return 0;
+
     return gPrimeMap[num];
 }
-// *************************************************************************** 
 
 int main(void)
 {
@@ -110,6 +111,7 @@ int main(void)
     return 0;
 }
 
+// Exercises the functions that determine prime numbers
 void findPrimesUpTo100(isPrimeFn primeFuncUnderTest)
 {
     printf("Prime numbers: ");
