@@ -16,10 +16,12 @@ Algorithm chosen:  Find the first 100 prime numbers
 typedef uint8_t(*isPrimeFn)(uint8_t);
 void findPrimesUpTo100(isPrimeFn primeFuncUnderTest);
 
+// *************************************************************************** 
 // Technique 1: calculate it on the fly
 // Speed:       Slow
 // RAM usage:   Low
 // Code space:  Low
+// *************************************************************************** 
 uint8_t isPrime_method1(uint8_t number)
 {
     // 0 and 1 are not prime
@@ -35,8 +37,6 @@ uint8_t isPrime_method1(uint8_t number)
     // half the divisor as no number larger than half would
     // divide evenly anyway
     uint8_t divisor = number >> 1;
-    uint8_t isPrime = 1;
-    
     while (divisor > 1)
     {
         if (number % divisor == 0)
@@ -48,11 +48,13 @@ uint8_t isPrime_method1(uint8_t number)
     return 1;  // must be prime
 }
 
+// *************************************************************************** 
 // Technique 2, lookup table with search 
-// (binary search would be faster but it's not implemented here)
+// (binary search might be faster but it's not implemented here)
 // Speed:       Faster
 // RAM usage:   Medium
 // Code space:  Medium
+// *************************************************************************** 
 #define PRIMES_0_100_COUNT 25
 
 static const uint8_t gPrimes[PRIMES_0_100_COUNT] = 
@@ -74,13 +76,15 @@ uint8_t isPrime_method2(uint8_t num)
     return isPrime;
 }
 
+// *************************************************************************** 
 // Technique 3, "giant" lookup table
 // Speed:       Fastest
 // RAM usage:   High
 // Code space:  High
+// *************************************************************************** 
 static const uint8_t gPrimeMap[101] = 
 {
-//  0  1  2  3  4  5  6  7  8  9  10e
+//  0  1  2  3  4  5  6  7  8  9  10
     0, 0, 1, 1, 0, 1, 0, 1, 0, 0,    // 0
     0, 1, 0, 1, 0, 0, 0, 1, 0, 1,    // 1
     0, 0, 0, 1, 0, 0, 0, 0, 0, 1,    // 2
@@ -92,11 +96,11 @@ static const uint8_t gPrimeMap[101] =
     0, 0, 0, 1, 0, 0, 0, 0, 0, 1,    // 8
     0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0  // 9
 };
-
 uint8_t isPrime_method3(uint8_t num)
 {
     return gPrimeMap[num];
 }
+// *************************************************************************** 
 
 int main(void)
 {
